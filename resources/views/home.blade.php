@@ -30,6 +30,7 @@
                                     <th rowspan="2">รายการสินค้า</th>
                                     <th colspan="3">เปรียบเทียบจำนวนสินค้า</th>
                                     <th rowspan="2">ตรวจนำสำเร็จแล้ว</th>
+                                    <th rowspan="2">จำนวนสินค้าที่มีอยู่</th>
                                 </tr>
                                 <tr class="text-center">
                                     <th>รอบที่ 1</th>
@@ -42,7 +43,7 @@
                                     $previousAreaCode = null;
                                 @endphp
                                 @foreach($products as $p)
-                                    <tr>
+                                    <tr class="text-center" style="font-size: 12px">
                                         @if ($previousAreaCode !== $p->area_code)
                                             <td rowspan="{{ $products->where('area_code', $p->area_code)->count() }}">{{ $p->area_code }}</td>
                                         @endif
@@ -51,6 +52,7 @@
                                         <td>{{ $p->prod_compare2 }}</td>
                                         <td>{{ $p->prod_compare3 }}</td>
                                         <td>{{ $p->compare_success }}</td>
+                                        <td>{{ $p->prod_count }}</td>
                                     </tr>
                                     @php
                                         $previousAreaCode = $p->area_code;
